@@ -15,7 +15,6 @@ namespace DIIA_UITest.Hooks
     {
         private readonly ScenarioContext _scenarioContext;
 
-
         public Hooks(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
@@ -26,18 +25,21 @@ namespace DIIA_UITest.Hooks
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--start-maximized");
+
             new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
             var driver = new ChromeDriver(options);
-            driver.Manage().Window.Maximize();
+            
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
+
             _scenarioContext.Add("WebDriver", driver);
         }
 
-        [AfterScenario()]
+        [AfterScenario]
         public void AfterScenario()
         {
-            _scenarioContext.Get<IWebDriver>("WebDriver").Dispose();
+            IWebDriver driver = _scenarioContext.Get<IWebDriver>("WebDriver");
+            driver.Dispose();
         }
         
     }

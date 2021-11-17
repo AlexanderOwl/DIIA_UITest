@@ -11,13 +11,15 @@ namespace DIIA_UITest.POM
     {
         private readonly IWebDriver _webDriver;
 
-        private readonly By _card = By.XPath("//*[@id='gromadyanam']//*[@class = 'swiper_services-slide-title']/text()");
-
         public ServiceSwiperPage(IWebDriver webDriver)
         {
             _webDriver = webDriver;
         }
 
+
+        private readonly By _card = By.XPath("//*[@id='gromadyanam']//*[@class = 'swiper_services-slide-title']/text()");
+
+       
         public ServiceSwiperPage GoToServiceSwiperPage()
         {
             _webDriver.Navigate().GoToUrl("https://diia.gov.ua/");

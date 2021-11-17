@@ -26,8 +26,7 @@ namespace DIIA_UITest.Steps
         [Given(@"Sign in page is opened")]
         public void GivenSignInPageIsOpened()
         {
-            _serviceSwiperPage.GoToServiceSwiperPage();
+            _serviceSwiperPage.GoToServiceSwiperPage();            
         }
-
     }
 }
